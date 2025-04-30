@@ -4,4 +4,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: lightblue;
+}
+
+.checkbox_with_text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cat_image {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  height: 180px;
+  transition: transform 0.2s linear;
+}
+
+.cat_image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.15);
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }

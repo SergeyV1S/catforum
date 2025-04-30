@@ -1,0 +1,23 @@
+.wrapper {
+  position: relative;
+  width: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  border: 1px solid #f3f4f6;
+}
+
+.content {
+  padding: 24px;
+  position: relative;
+}
+
+.header {
+  padding: 24px 24px 0px 24px;
+  color: #1f2937;
+  margin-bottom: 12px;
+  position: relative;
+  padding-bottom: 8px;
+}
