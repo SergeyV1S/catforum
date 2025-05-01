@@ -1,6 +1,6 @@
 # Cat Forum
 
-**[Перейти на веб-приложение](https://shift-delivery.igniz.ru/)**
+**[Перейти на веб-приложение](https://catforum.vercel.app/)**
 
 ---
 
