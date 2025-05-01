@@ -1,6 +1,6 @@
 # Cat Forum
 
-**[Перейти на веб-приложение](https://catforum.vercel.app/)**
+**[Перейти на веб-приложение](https://cat-forum.vercel.app/)**
 
 ---
 
