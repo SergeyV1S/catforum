@@ -18,16 +18,21 @@
   border-radius: 12px;
   object-fit: cover;
   height: 180px;
-  transition: transform 0.2s linear;
+  transition: all 0.2s linear;
 }
 
 .cat_image:hover {
   transform: scale(1.03);
-  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0px 35px -5px rgba(0, 51, 255, 0.628);
 }
 
 .settings {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.error {
+  color: rgb(214, 48, 48);
+  text-align: center;
 }

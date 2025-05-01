@@ -48,3 +48,11 @@
   line-height: 1.5;
   font-weight: 400;
 }
+
+.variant-error {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: rgb(220, 55, 55);
+  text-align: center;
+}

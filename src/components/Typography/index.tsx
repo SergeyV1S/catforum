@@ -1,53 +1,31 @@
 import typographyStyles from "./typography.module.css";
 import { cn } from "@/helpers";
 
-type TTypographyVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+type TTypographyTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+type TTypographyVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "error";
 
 type TTypographyProps<T extends React.ElementType> = {
-  as?: T;
+  as?: TTypographyTag;
   variant?: TTypographyVariant;
   className?: string;
   children: React.ReactNode;
 } & React.ComponentPropsWithoutRef<T>;
 
-export const Typography = <T extends React.ElementType = "p">({
-  as,
+export const Typography = <T extends TTypographyTag = "p">({
+  as = "p",
   variant = "p",
   className,
   children,
   ...props
 }: TTypographyProps<T>) => {
-  const Component = as || choiceVariant(variant);
-
-  const TypographyComponent = Component as React.ElementType;
+  const Component = as;
 
   return (
-    <TypographyComponent
+    <Component
       className={cn(typographyStyles.typography, typographyStyles[`variant-${variant}`], className)}
       {...props}
     >
       {children}
-    </TypographyComponent>
+    </Component>
   );
-};
-
-const choiceVariant = (variant: TTypographyVariant): React.ElementType => {
-  switch (variant) {
-    case "h1":
-      return "h1";
-    case "h2":
-      return "h2";
-    case "h3":
-      return "h3";
-    case "h4":
-      return "h4";
-    case "h5":
-      return "h5";
-    case "h6":
-      return "h6";
-    case "p":
-      return "p";
-    default:
-      return "p";
-  }
 };

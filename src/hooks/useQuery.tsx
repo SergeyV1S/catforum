@@ -1,32 +1,47 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface IQuery<T> {
   queryFn: () => Promise<T>;
+  refetchInterval?: number;
 }
 
-export const useQuery = <T,>({ queryFn }: IQuery<T>) => {
+export const useQuery = <T,>({ queryFn, refetchInterval }: IQuery<T>) => {
   const [data, setData] = useState<T>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const result = await queryFn();
+      setData(result);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unknown error");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setError(null);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
 
-      try {
-        const result = await queryFn();
+    if (!data) fetchData();
 
-        setData(result);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error");
-      } finally {
-        setIsLoading(false);
+    if (refetchInterval) {
+      intervalRef.current = setInterval(fetchData, refetchInterval);
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
       }
     };
+  }, [queryFn, refetchInterval]);
 
-    fetchData();
-  }, [queryFn]);
-
-  return { data, isLoading, error };
+  return { data, isLoading, error, refetch: fetchData };
 };
